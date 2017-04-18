@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>glcode.js</file>
+        <file>three.js</file>
+        <file>ControlEventSource.qml</file>
+        <file>OrbitControls.js</file>
+        <file>TrackballControls.js</file>
+        <file>TransformControls.js</file>
+        <file>main.cpp</file>
+        <file>solarsystem.js</file>
+        <file>images/earth.png</file>
+        <file>images/earthbump1k.jpg</file>
+        <file>images/earthcloudmapcolortrans.png</file>
+        <file>images/earthmap1k.jpg</file>
+        <file>images/earthspec1k.jpg</file>
+        <file>images/galaxy_starfield.png</file>
+        <file>images/moonbump1k.jpg</file>
+        <file>images/moonmap1k.jpg</file>
+        <file>images/sunmap.jpg</file>
+        <file>RectMenu.qml</file>
+        <file>images/1492533893_play.png</file>
+        <file>images/1492533920_arrow_left.png</file>
+        <file>images/1492533959_arrow_right.png</file>
+        <file>images/1492534016_pause.png</file>
+        <file>ButtonMenu.qml</file>
+    </qresource>
+</RCC>
