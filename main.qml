@@ -21,6 +21,7 @@ Window {
                 console.log(array[i][j]);
             }
         }
+
     }
 
     Timer
@@ -95,6 +96,7 @@ Window {
             {
                 id: animSwitch
                 anchors.left: animText.right
+                anchors.leftMargin: 15
                 onClicked: function(){
                     if (animSwitch.checked == true)
                     {
@@ -111,12 +113,31 @@ Window {
                 }
             }
 
+            Text
+            {
+                id:timerText
+                anchors.top:animText.bottom
+                color: "white"
+                font.pixelSize:  14
+                text:"Интервал таймера, мс: "
+                anchors.topMargin: 5
+            }
+
+
+            TextField
+            {
+                id: timerTextField
+                anchors.top:animSwitch.bottom
+                anchors.left:timerText.right
+                anchors.topMargin: 5
+
+            }
             ButtonMenu
             {
 
                 id : playButton
                 enabled: false
-                anchors.top:animSwitch.bottom
+                anchors.top:timerText.bottom
                 anchors.topMargin: 5
                 iconSource: "qrc:/images/1492533893_play.png"
 
@@ -126,9 +147,9 @@ Window {
                 id: stopButton
                 enabled: false
                 anchors.left:playButton.right
-                anchors.top:animSwitch.bottom
+                anchors.top:timerText.bottom
                 anchors.topMargin: 5
-                anchors.leftMargin: 20
+                anchors.leftMargin: 40
                 iconSource: "qrc:/images/1492534016_pause.png"
 
             }
@@ -153,7 +174,7 @@ Window {
             {
                 id: manualSwitch
                 anchors.left: manualText.right
-                anchors.leftMargin: 3
+                anchors.leftMargin: 15
                 onClicked: function(){
                     if (manualSwitch.checked == true)
                     {
@@ -172,21 +193,35 @@ Window {
 
             ButtonMenu
             {
-                id : nextButton
+                id : previousButton
                 enabled: false
                 anchors.top:manualSwitch.bottom
                 anchors.topMargin: 5
                 iconSource: "qrc:/images/1492533920_arrow_left.png"
 
             }
-            ButtonMenu
+
+            TextField
             {
-                id: previousButton
-                enabled: false
-                anchors.left:nextButton.right
+                id : currentPosTextField
+                width:  100
+                height: 50
+                font.pixelSize: 20
+                validator: IntValidator {bottom: 0; top: 1000000}
                 anchors.top:manualSwitch.bottom
                 anchors.topMargin: 5
-                anchors.leftMargin: 20
+                anchors.left: previousButton.right
+                anchors.leftMargin: 5
+            }
+
+            ButtonMenu
+            {
+                id: nextButton
+                enabled: false
+                anchors.left:currentPosTextField.right
+                anchors.leftMargin: 5
+                anchors.top:manualSwitch.bottom
+                anchors.topMargin: 5
                 iconSource: "qrc:/images/1492533959_arrow_right.png"
 
             }

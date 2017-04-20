@@ -79,6 +79,14 @@ function createStarfield(radius) {
         side	: THREE.BackSide
     })
     var geometry	= new THREE.SphereGeometry(radius, 32, 32)
+    geometry.rotateX(Math.PI / 2);
     var mesh	= new THREE.Mesh(geometry, material)
     return mesh
+}
+
+function calculateSunPosition (dateTime)
+{
+    var dt = new Date();
+
+
 }

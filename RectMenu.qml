@@ -8,6 +8,7 @@ Rectangle
     antialiasing: true
     border.width: 3
     border.color: "white"
+    opacity: 0.8
     radius: 10
 
 
@@ -19,8 +20,8 @@ Rectangle
 
         hoverEnabled: true
         anchors.fill: parent
-        onEntered:  { parent.opacity = 0.6 }
-        onExited:  { parent.opacity = 0.3/*function()*/
+        onEntered:  { parent.opacity = 0.8 }
+        onExited:  { parent.opacity = 0.5/*function()*/
 //        {
 //             console.log(parent.contains(Qt.point(mouseX,mouseY)));
 //            if(!parent.contains(Qt.point(mouseX,mouseY)))

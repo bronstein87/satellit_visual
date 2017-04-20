@@ -13,14 +13,17 @@ var moon;
 var sun;
 
 var commonGeometry = new THREE.BufferGeometry().fromGeometry(new THREE.SphereGeometry(1, 64, 64));
-
+commonGeometry.rotateX(Math.PI / 2);
 
 function initializeGL(canvas,eventSource,timer) {
 
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 1, 20000000);
+    camera.up = new THREE.Vector3( 0, 0, 1 );
+    camera.position.y = 15;
     camera.position.z = 15;
+    camera.position.x = 15;
 
     scene.add(new THREE.AmbientLight(0x111111,5));
 
@@ -33,7 +36,7 @@ function initializeGL(canvas,eventSource,timer) {
     sun = createSun(SUN_RADIUS);
     sun.translateX(SUN_DISTANCE);
     sun.position= sun.position
-    .applyAxisAngle(new THREE.Vector3(0 , 0, 1),THREE.Math.degToRad(23.5));
+    .applyAxisAngle(new THREE.Vector3(0 ,1, 0),THREE.Math.degToRad(23.5));
     scene.add(sun);
 
     var EARTH_RADIUS=6.34;
@@ -47,9 +50,9 @@ function initializeGL(canvas,eventSource,timer) {
     var MOON_DISTANCE = 384.4;
     moon = createPlanet(MOON_RADIUS,0.05,'/images/moonmap1k.jpg','/images/moonbump1k.jpg');
     moon.translateX(MOON_DISTANCE);
-    moon.rotateZ(THREE.Math.degToRad(5));
+    moon.rotateY(THREE.Math.degToRad(5));
     moon.position= moon.position
-    .applyAxisAngle(new THREE.Vector3(0 , 0, 1),THREE.Math.degToRad(23.5));
+    .applyAxisAngle(new THREE.Vector3(0 , 1, 0),THREE.Math.degToRad(23.5));
     scene.add(moon);
 
 
@@ -60,7 +63,7 @@ function initializeGL(canvas,eventSource,timer) {
 
     arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
     var angle=THREE.Math.degToRad(23.5);
-    arrowHelper.rotateZ(angle);
+    arrowHelper.rotateY(angle);
     scene.add( arrowHelper );
 
     scene.add( new THREE.AxisHelper( 10 ) );
@@ -85,7 +88,7 @@ function resizeGL(canvas) {
 
 function paintGL(canvas) {
     controls.update();
-    earth.rotation.y += speeds.earthSpeed;
+    earth.rotation.z += speeds.earthSpeed;
     moveMoon(speeds.moonSpeed);
     moveSun (speeds.sunSpeed);
     renderer.render(scene, camera);
@@ -93,8 +96,8 @@ function paintGL(canvas) {
 
 
 
-moveMoon.axisToMove=new THREE.Vector3( 0, 1, 0 )
-.applyAxisAngle( new THREE.Vector3(0 , 0, 1),THREE.Math.degToRad(23.5)).normalize();
+moveMoon.axisToMove=new THREE.Vector3( 0, 0 , 1 )
+.applyAxisAngle( new THREE.Vector3(0 , 1, 0),THREE.Math.degToRad(23.5)).normalize();
 
 function moveMoon(speed)
 {
@@ -103,8 +106,8 @@ function moveMoon(speed)
     moon.position = moon.position.applyQuaternion(quaternion);
 }
 
-moveSun.axisToMove=new THREE.Vector3( 0, 1, 0 )
-.applyAxisAngle( new THREE.Vector3(0 , 0, 1),THREE.Math.degToRad(23.5)).normalize();
+moveSun.axisToMove=new THREE.Vector3( 0, 0, 1 )
+.applyAxisAngle( new THREE.Vector3(0 , 1, 0),THREE.Math.degToRad(23.5)).normalize();
 
 
 function moveSun(speed)

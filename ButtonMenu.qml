@@ -5,15 +5,5 @@ Button
     id: menuButton
     width: 50
     height: 50
-    onHoveredChanged: function()
-    {
-        if(hovered)
-        {
-            opacity = 1;
-        }
-        else
-        {
-            opacity = 0.5;
-        }
-    }
+    opacity: 1
 }
